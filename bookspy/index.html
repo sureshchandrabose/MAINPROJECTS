@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>bookspy</title>
+ <style>
+     *{
+     padding: 0;
+     margin: 0;
+}
+
+.navbar{
+     background-color: #FD6569;
+     padding: 10px;
+     font-size: 35px;
+     text-transform: bold;
+     border-radius: 10px;
+}
+.container{
+    padding: 10px;
+     
+
+}
+.container-tittle{
+     text-align: centre;
+     vertical-align: top;
+     display: inline-block;
+     margin-bottom: 10px;
+     padding: 15px;
+     width: 25%;
+     background-color: black;
+     color: white;
+     margin: 30px;
+     border-radius: 5px;
+     overflow: scroll;
+     flex-wrap: nowrap;
+     
+     
+}
+/* .container-tittle:focus{
+     flex-wrap: black;
+} */
+.container h1{
+     color: #fd6569;
+     text-transform: uppercase;
+
+}
+.container button{
+     background-color: #FD6569;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-top: 5px;
+     padding-bottom:5px;
+     border: none;
+     border-radius: 30px;
+     color: black;
+     margin-top: 10px;
+}
+#plus{
+     background-color: #FD6569;
+     position: fixed;
+     border-radius: 50%;
+     padding-right: 15px;
+     padding-left: 15px;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     font-size: 45px;
+     right: 25px;
+     bottom: 40px;
+}
+.overlay{
+     background-color: black;
+     position: absolute;
+     height: 100%;
+     width: 100%;
+     top: 0;
+     opacity: 0.8;
+     z-index: 1;
+     display: none;
+}
+.popupmenu{
+     width:40%;
+     position: absolute;
+    padding: 20px;
+     width: 40%;
+     background-color: #FD6569;
+     top: 20px;
+     left: 30%;
+     border-radius: 20px;
+     z-index: 2;
+     display: none;
+}
+#booktittle{
+     width: 100%;
+     background-color: #FD6569;
+     margin-top: 10px;
+     padding: 5px;
+     margin-bottom: 10px;
+     border: none;
+     border-bottom: 2px black solid;
+
+}
+
+#bookauthor{
+     width: 100%;
+     background-color: #FD6569;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     padding: 5px;
+     border: none;
+     border-bottom: 2px black solid;
+
+
+}
+#textarea{
+     width: 100%;
+     background-color: #FD6569;
+     margin-top: 10px;
+     padding: 5px;
+     border: 2px black solid;
+     margin-bottom: 10px;
+
+
+}
+.popupmenu button{
+     background-color: black;
+     color: white;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-top: 5px;
+     padding-bottom: 5px;
+}
+#cancel{
+     margin-left: 5px;
+}
+/* .inputs{
+     padding-right: 20px;
+} */
+.popupmenu input::placeholder{
+     color: black;
+     font-size: 15PX;
+     
+}
+.popupmenu textarea::placeholder{
+     color: black;
+     font-size: 15PX;
+}
+.popupmenu input:focus{
+     outline: none;
+     
+     
+} 
+.popupmenu textarea:focus{
+     outline: none;
+}
+  </style>
+     
+     
+</head>
+<body>
+     <div class="navbar">
+         bookspy
+     </div>
+     <div class="container">
+          <div class="container-tittle">
+               <h1>rich dad poor dad</h1>
+               <h3>robert</h3>
+               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad aperiam, accusantium ab harum adipisci deleniti eaque id rerum! Illo ut placeat dolorem debitis cupiditate nam ipsam ducimus harum aperiam ad.</p>
+               <button id="delete" onclick="deleteall(event)">Delete</button>
+          </div>
+          
+          
+         
+     </div>
+     
+     <button id="plus">+</button>
+     <div class="overlay"></div>
+     <div class="popupmenu">
+          
+               <h3>Add Book</h3>
+          <input type="text" placeholder="Book Tittle " id="booktittle">
+          <input type="text" placeholder="Book Author " id="bookauthor">
+          <textarea name="area" id="textarea" placeholder="short description" ></textarea>
+          <button id="add">ADD</button>
+          <button id="cancel">cancel</button> 
+          
+     </div>
+
+
+
+
+     <script >
+          //select plus,pop up menu,overlay
+let a=document.getElementById("plus")
+let b=document.querySelector(".overlay")
+let c=document.querySelector(".popupmenu")
+
+a.addEventListener("click",function(){
+b.style.display="block"
+c.style.display="block"
+})
+
+//select cancel button
+let d=document.getElementById("cancel")
+d.addEventListener("click",function(){
+     b.style.display="none"
+     c.style.display="none"
+
+})
+
+//select add,container,booktittle,bookauthor, textarea
+let e=document.getElementById("add")
+let f=document.querySelector(".container")
+let h=document.getElementById("booktittle")
+let i=document.getElementById("bookauthor")
+let j=document.getElementById("textarea")
+e.addEventListener("click",function(event){
+     event.preventDefault()
+     let g=document.createElement("div")
+     g.setAttribute("class","container-tittle")
+     g.innerHTML=(`<h1>${h.value}</h1>
+           <h3>${i.value}</h3>
+          <p>${j.value}</p>
+           <button id="delete" onclick="deleteall(event)">Delete</button>`)
+          f.append(g)
+           b.style.display="none"
+           c.style.display="none"
+           h.value=""
+           i.value=""
+           j.value=""
+})
+// delete
+function deleteall(event){
+     event.preventDefault()
+     event.target.parentElement.remove()
+}
+      
+     </script>
+</body>
+</html>
